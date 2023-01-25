@@ -1,5 +1,7 @@
 document.querySelector('button').addEventListener('click', proPresenterActivePresentation)
 document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
+document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
+document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
 
 /*function getDrink(){
     let drink = document.querySelector('input').value
@@ -25,33 +27,59 @@ document.querySelector('button').addEventListener('click', proPresenterActivePre
         console.log(`error ${err}`)
     });
 } */
+//////* PROPRESENTER *////
 
 function proPresenterActivePresentation(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
-    console.log(data)
       if(data.presentation.id.name == undefined){
-        document.querySelector('h2').innerText = "No Presentation Active"
+        document.querySelector('#currentPresentation').innerText = "No Presentation Active"
       }else{
-        document.querySelector('h2').innerText = data.presentation.id.name
+        document.querySelector('#currentPresentation').innerText = `Current Presentation ${data.presentation.id.name}`
       }
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
-  //setTimeout(proPresenterActivePresentation, 5000)
+  setTimeout(proPresenterActivePresentation, 5000)
 }
 
 function proPresenterActivePresentationSlide(){
   fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
-      console.log(data)
-      document.querySelector('h3').innerText = `Slide Number ${data.presentation_index.index}`
+      document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
-  //setTimeout(proPresenterActivePresentationSlide, 3000)
+  setTimeout(proPresenterActivePresentationSlide, 3000)
 }
+
+function proPresenterActivePresentationLook(){
+  fetch(`http://192.168.0.125:1025/v1/look/current`)
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      document.querySelector('#currentLook').innerText = `Current Look ${data.id.name}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActivePresentationSlide, 10000)
+}
+
+function proPresenterActivePresentationStage(){
+  fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      console.log(data)
+      document.querySelector('#currentStage').innerText = `Current Stage ${data.name}`
+      document.querySelector('#currentStageImage').src = `http://192.168.0.125:1025/v1/stage/layout/${data.index}/thumbnail`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActivePresentationSlide, 10000)
+}
+
