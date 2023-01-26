@@ -2,6 +2,8 @@ document.querySelector('button').addEventListener('click', proPresenterActivePre
 document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
 document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
 document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
+document.querySelector('button').addEventListener('click', pcoPlan)
+
 
 /*function getDrink(){
     let drink = document.querySelector('input').value
@@ -73,8 +75,7 @@ function proPresenterActivePresentationStage(){
   fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
-      console.log(data)
-      document.querySelector('#currentStage').innerText = `Current Stage ${data.name}`
+      document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
       document.querySelector('#currentStageImage').src = `http://192.168.0.125:1025/v1/stage/layout/${data.index}/thumbnail`
     })
   .catch(err => {
@@ -83,3 +84,33 @@ function proPresenterActivePresentationStage(){
   setTimeout(proPresenterActivePresentationSlide, 10000)
 }
 
+///// Planning Center Live ///////
+
+const pcoAuth = 'd5ce11575a546bfd596581e14083607044349ebac03d15244cdd5b5d72422503:3c5e4d41c2ddc955299b63dd607dcf0648d02e5193fd1f03739cbabee8cf6f1c'
+
+/*module.exports{
+pcoPlans: async (req, res) => {
+  try {
+    let response = await fetch('https://api.planningcenteronline.com/services/v2/service_types/1/plans', {method:'GET', 
+    headers: {'Authorization': 'Basic ' + btoa('d5ce11575a546bfd596581e14083607044349ebac03d15244cdd5b5d72422503:3c5e4d41c2ddc955299b63dd607dcf0648d02e5193fd1f03739cbabee8cf6f1c')}});
+    let data = await response.json();
+    console.log(data);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+} */
+function pcoPlan(){
+  fetch(`https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date`, {method:'GET', 
+  headers: {'Authorization': 'Basic ' + btoa(pcoAuth)}})
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      console.log(data)
+      document.querySelector('#pco').innerText = data
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActivePresentation, 5000)
+}
