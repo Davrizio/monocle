@@ -1,37 +1,15 @@
-document.querySelector('button').addEventListener('click', proPresenterActivePresentation)
-document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
-document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
-document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
-document.querySelector('button').addEventListener('click', pcoPlan)
+//document.querySelector('button').addEventListener('click', proPresenterActivePresentation)
+//document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
+//document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
+//document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
+document.addEventListener('DOMContentLoaded', pcoPlan)
+document.addEventListener('DOMContentLoaded', pcoPlanItems)
 
 
-/*function getDrink(){
-    let drink = document.querySelector('input').value
 
-    fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
-    .then(res => res.json()) // parse response as JSON
-    .then(data => {
-      console.log(data.drinks)
-      document.querySelector('h2').innerText = data.drinks[0].strDrink
-      document.querySelector('img').src = data.drinks[0].strDrinkThumb
-      document.querySelector('h3').innerText = data.drinks[0].strInstructions
-      const ing = [data.drinks[0].strMeasure1, data.drinks[0].strIngredient1, data.drinks[0].strMeasure2, data.drinks[0].strIngredient2, data.drinks[0].strMeasure3, data.drinks[0].strIngredient3, data.drinks[0].strMeasure4, data.drinks[0].strIngredient4, data.drinks[0].strMeasure5, data.drinks[0].strIngredient5, data.drinks[0].strMeasure6, data.drinks[0].strIngredient6]
-      const ingMeasure = [data.drinks[0].strMeasure1, data.drinks[0].strMeasure2, data.drinks[0].strMeasure3, data.drinks[0].strMeasure4, data.drinks[0].strMeasure5, data.drinks[0].strMeasure6]
-      let ingredientList = document.querySelector("#ingredientList")
-      ing.forEach(function (ingredients) {
-        let li = document.createElement("li");  
-        li.textContent = ingredients;        
-        ingredientList.appendChild(li);
-      });
-      
-    })
-    .catch(err => {
-        console.log(`error ${err}`)
-    });
-} */
-//////* PROPRESENTER *////
+//////* PROPRESENTER
 
-function proPresenterActivePresentation(){
+/*function proPresenterActivePresentation(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
@@ -82,7 +60,7 @@ function proPresenterActivePresentationStage(){
       console.log(`error ${err}`)
   });
   setTimeout(proPresenterActivePresentationSlide, 10000)
-}
+} */
 
 ///// Planning Center Live ///////
 
@@ -102,15 +80,34 @@ pcoPlans: async (req, res) => {
 
 } */
 function pcoPlan(){
-  fetch(`https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date`, {method:'GET', 
+  fetch(`https://api.planningcenteronline.com/services/v2/service_types/285487/plans?where[series_title]=Northland 2.0`, {method:'GET', 
   headers: {'Authorization': 'Basic ' + btoa(pcoAuth)}})
   .then(res => res.json()) // parse response as JSON
   .then(data => {
-      console.log(data)
-      document.querySelector('#pco').innerText = data
+      document.querySelector('#pcoDate').innerText = data.data[0].attributes.dates
+      document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
+      document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
-  setTimeout(proPresenterActivePresentation, 5000)
+}
+
+function pcoPlanItems(){
+  fetch(`https://api.planningcenteronline.com/services/v2/service_types/285487/plans/62389948/items`, {method:'GET', 
+  headers: {'Authorization': 'Basic ' + btoa(pcoAuth)}})
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      console.log(data)
+      let itemList = document.querySelector("#pco")
+      for(title in data.data){
+        console.log(title)
+        let li = document.createElement("li");  
+        li.textContent = data.data[title].attributes.title;        
+        itemList.appendChild(li);
+      }
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
 }
