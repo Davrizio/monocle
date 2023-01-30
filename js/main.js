@@ -2,8 +2,9 @@
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
-document.addEventListener('DOMContentLoaded', pcoPlan)
-document.addEventListener('DOMContentLoaded', pcoPlanItems)
+//document.addEventListener('DOMContentLoaded', pcoPlan)
+//document.addEventListener('DOMContentLoaded', pcoPlanItems)
+document.addEventListener('DOMContentLoaded', nextWeekend)
 
 
 
@@ -66,9 +67,32 @@ function proPresenterActivePresentationStage(){
 
 const pcoAuth = 'd5ce11575a546bfd596581e14083607044349ebac03d15244cdd5b5d72422503:3c5e4d41c2ddc955299b63dd607dcf0648d02e5193fd1f03739cbabee8cf6f1c'
 
+const now = new Date()
+
+let closestDate = ''
+
+let closestDateId = ''
+
+function nextWeekend(){
+  for(i=0; i<6; i++){
+    if(now.getDay() + i === 6 || now.getDay() === 6){
+      closestDate = now + i
+    }
+  }
+  console.log(closestDate)
+
+  for(const property in localStorage){
+    let value = localStorage[property]
+    if(closestDate.substring(0,15) == value.substring(0,15)){
+      closestDateId = Object.keys(localStorage[property])
+      console.log(Object.keys(localStorage))
+    }
+  }
+}
+console.log(closestDateId)
 async function pcoPlan() {
 	const response = await fetch(
-		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=40',
+		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=52',
 		{
 			method: 'GET',
 			headers: {
@@ -79,19 +103,21 @@ async function pcoPlan() {
   if (!response.ok) {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
-	const data = await response.json(); // Extracting data as a JSON Object from the response
+	const data = await response.json();
   console.log(data)
-  for(sort_date in data.data){
-    console.log(data.data[sort_date].attributes.sort_date)
+  for(id in data.data){
+    localStorage.setItem(data.data[id].id, new Date(data.data[id].attributes.sort_date))
   }
+
   document.querySelector('#pcoDate').innerText = data.data[0].attributes.dates
   document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
   document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title
+  
 }
 
-async function pcoPlanItems() {
+/*async function pcoPlanItems() {
 	const response = await fetch(
-		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans/62389948/items',
+		`https://api.planningcenteronline.com/services/v2/service_types/285487/plans/${closestDateId}/items`,
 		{
 			method: 'GET',
 			headers: {
@@ -110,4 +136,36 @@ async function pcoPlanItems() {
         li.className = data.data[title].attributes.item_type        
         itemList.appendChild(li);
   }
-}
+} */
+
+//Future Load button so api call isn't so long. button would populat planDate object based on year chosen
+/*async function pcoPlanLoad() {
+	const response = await fetch(
+		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=52',
+		{
+			method: 'GET',
+			headers: {
+				'Authorization': 'Basic ' + btoa(pcoAuth)
+			}
+		}
+	);
+  if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const data = await response.json();
+  console.log(data)
+
+  for(i=1; i<6; i++){
+    if(now.getDay() + i === 6 || now.getDay() === 6){
+      closest = now + i
+    }
+  }
+  
+  for(id in data.data){
+    planDate[data.data[id].id] = data.data[id].attributes.sort_date
+  }
+
+  console.log(planDate)
+  
+  
+} */
