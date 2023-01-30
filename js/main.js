@@ -69,54 +69,34 @@ const pcoAuth = 'd5ce11575a546bfd596581e14083607044349ebac03d15244cdd5b5d7242250
 
 const now = new Date()
 
-let closestDate = ''
+let closestDate = new Date(now)
 
 let closestDateId = ''
 
 function nextWeekend(){
-  for(i=0; i<6; i++){
-    if(now.getDay() + i === 6 || now.getDay() === 6){
-      closestDate = now + i
+  if(now.getDay() === 0){
+    closestDate.setDate(closestDate.getDate() - 1)
+  }else{
+    for(i=1; i<7; i++){
+      if(now.getDay() + i === 6 || now.getDay() === 6){
+      closestDate.setDate(closestDate.getDate() + i)
+      }
     }
   }
-  console.log(closestDate)
 
-  for(const property in localStorage){
-    let value = localStorage[property]
-    if(closestDate.substring(0,15) == value.substring(0,15)){
-      closestDateId = Object.keys(localStorage[property])
-      console.log(Object.keys(localStorage))
+  for(let i = 0; i < localStorage.length; i++){
+    if(localStorage.getItem(localStorage.key(i)).substring(0,15) == closestDate.toString().substring(0,15)){
+      closestDateId = localStorage.key(i)
     }
   }
-}
-console.log(closestDateId)
-async function pcoPlan() {
-	const response = await fetch(
-		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=52',
-		{
-			method: 'GET',
-			headers: {
-				'Authorization': 'Basic ' + btoa(pcoAuth)
-			}
-		}
-	);
-  if (!response.ok) {
-		throw new Error(`HTTP error! status: ${response.status}`);
-	}
-	const data = await response.json();
-  console.log(data)
-  for(id in data.data){
-    localStorage.setItem(data.data[id].id, new Date(data.data[id].attributes.sort_date))
-  }
 
-  document.querySelector('#pcoDate').innerText = data.data[0].attributes.dates
-  document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
-  document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title
-  
+  pcoPlan()
+
+  pcoPlanItems()
 }
 
-/*async function pcoPlanItems() {
-	const response = await fetch(
+async function pcoPlanItems() {
+  const response = await fetch(
 		`https://api.planningcenteronline.com/services/v2/service_types/285487/plans/${closestDateId}/items`,
 		{
 			method: 'GET',
@@ -136,10 +116,32 @@ async function pcoPlan() {
         li.className = data.data[title].attributes.item_type        
         itemList.appendChild(li);
   }
-} */
+}
 
-//Future Load button so api call isn't so long. button would populat planDate object based on year chosen
-/*async function pcoPlanLoad() {
+async function pcoPlan() {
+	const response = await fetch(
+		`https://api.planningcenteronline.com/services/v2/service_types/285487/plans?where[id]=${closestDateId}`,
+		{
+			method: 'GET',
+			headers: {
+				'Authorization': 'Basic ' + btoa(pcoAuth)
+			}
+		}
+	);
+  if (!response.ok) {
+		throw new Error(`HTTP error! status: ${response.status}`);
+	}
+	const data = await response.json();
+  console.log(data)
+  document.querySelector('#pcoDate').innerText = data.data[0].attributes.short_dates
+  document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
+  document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title
+
+}
+
+
+// build on click refresh button
+async function pcoPlanUpdate() {
 	const response = await fetch(
 		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=52',
 		{
@@ -154,18 +156,7 @@ async function pcoPlan() {
 	}
 	const data = await response.json();
   console.log(data)
-
-  for(i=1; i<6; i++){
-    if(now.getDay() + i === 6 || now.getDay() === 6){
-      closest = now + i
-    }
-  }
-  
   for(id in data.data){
-    planDate[data.data[id].id] = data.data[id].attributes.sort_date
-  }
-
-  console.log(planDate)
-  
-  
-} */
+    localStorage.setItem(data.data[id].id, new Date(data.data[id].attributes.sort_date))
+  }  
+}
