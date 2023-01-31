@@ -2,13 +2,14 @@
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
 //document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
-//document.addEventListener('DOMContentLoaded', pcoPlan)
-//document.addEventListener('DOMContentLoaded', pcoPlanItems)
+
 document.addEventListener('DOMContentLoaded', nextWeekend)
 
 
 
 //////* PROPRESENTER
+
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
 
 /*function proPresenterActivePresentation(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active`)
@@ -113,7 +114,8 @@ async function pcoPlanItems() {
   for(title in data.data){
     let li = document.createElement("li");  
         li.textContent = data.data[title].attributes.title;
-        li.className = data.data[title].attributes.item_type        
+        li.className = "grid w-32 h-20 rounded bg-primary text-primary-content place-content-center"
+        // add if statement and color based on  item type data.data[title].attributes.item_type        
         itemList.appendChild(li);
   }
 }
@@ -132,7 +134,7 @@ async function pcoPlan() {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
 	const data = await response.json();
-  console.log(data)
+  
   document.querySelector('#pcoDate').innerText = data.data[0].attributes.short_dates
   document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
   document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title

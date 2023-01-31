@@ -10,54 +10,10 @@
 /******************************************
 /* LAYOUT
 /*******************************************/
-body {
-  padding: 33%;
-}
-
-section{
-  height: 550px;
-  width: 1200px;
-  display: flex;
-  justify-content:space-around;
-  align-items: center;
-  flex-flow: row wrap;
-  padding: 15px;
-  border: solid black 3px;
-  border-radius: 7px;
-}
-
-#pco{
-  height: 1550px;
-  width: 550px;
-  display: flex;
-  justify-content:center;
-  align-items: center;
-  flex-flow: row wrap;
-  padding: 15px;
-  border: solid black 3px;
-  border-radius: 7px;
-}
-h2{
-  margin: 10px 30px;
-}
-li{
-  display: flex;
-  width: 48%;
-  flex-flow: column nowrap;
-  font-size: 24px;
-}
-
-img{
-  display: block;
-  margin: 0 auto;
-  height: 200px;
-}
-
-.header{
-  font-style: italic;
-}
-
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
