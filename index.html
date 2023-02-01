@@ -13,23 +13,49 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
+		<div id="container">
+			<div class="card w-96 bg-base-100 shadow-xl">
+				<figure><iframe src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
+				<div class="card-body">
+				<h2 class="card-title">Stream Title</h2>
+				<p>Stream Description</p>
+				<div class="card-actions justify-end">
+					<button class="btn btn-primary">TBD</button>
+				</div>
+				</div>
+			</div>
 		
-		<iframe width="720" height="800" src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe>
-	
-		<section id="proPresenter">
-			<h1 class="text-3xl font-bold underline">Propresenter</h1>
-			<button type="button" name="button">Refresh</button>
-			<h2 id="currentPresentation">Current Presentation</h2>
-			<h3 id="currentSlide">Current Slide</h3>
-			<h3 id="currentLook">Current Look</h3>
-			<h3 id="currentStage">Current Stage</h3>
-			<img id="currentStageImage" src="" alt="">
-		</section>
-		<section id="pco">
-			<h2 id = "pcoSeriesTitle"></h2>
-			<h2 id = "pcoDate"></h2>
-			<h2 id = "pcoPlanTitle"></h2>
-		</section>
+			<div class="card w-96 bg-base-100 shadow-xl">
+				<div class="card-body">
+					<div class="card-actions justify-end">
+						<button name="button" class="btn btn-square btn-sm">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+						</button>
+					</div>
+					<h2 class="card-title">Propresenter</h2>
+					<h2 id="currentPresentation">Current Presentation</h2>
+					<h3 id="currentSlide">Current Slide</h3>
+					<h3 id="currentLook">Current Look</h3>
+					<h3 id="currentStage">Current Stage</h3>
+				</div>
+				<figure><img id="currentStageImage" src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+			</div>
+			
+			<div class="overflow-x-auto">
+				<table class="table w-full">
+				  <thead>
+					<tr>
+					  <th>Times</th>
+					  <th id="pcoTitle">PCO</th>
+					</tr>
+				  </thead>
+				  <tbody id="pco"></tbody>
+				</table>
+			</div>
+			
+		</div>
+
 		<script type="text/javascript" src="js/main.js"></script>
+
 	</body>
 </html>

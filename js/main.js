@@ -110,14 +110,31 @@ async function pcoPlanItems() {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
 	const data = await response.json();
+
   let itemList = document.querySelector("#pco")
+  console.log(data)
+  
   for(title in data.data){
-    let li = document.createElement("li");  
-        li.textContent = data.data[title].attributes.title;
-        li.className = "grid w-32 h-20 rounded bg-primary text-primary-content place-content-center"
-        // add if statement and color based on  item type data.data[title].attributes.item_type        
-        itemList.appendChild(li);
+    let minutes = Math.floor(data.data[title].attributes.length / 60)
+    let seconds = data.data[title].attributes.length - minutes * 60
+    let secondsPad = String(seconds).padStart(2,'0')
+    let tr = document.createElement("tr")
+    let th = document.createElement("th")
+    let td = document.createElement("td")
+
+    if(minutes === 0 && seconds === 0){
+      th.textContent = ''
+    }else{
+      th.textContent = `${minutes}:${secondsPad}`
+    }
+
+        td.textContent = data.data[title].attributes.title;
+        td.className = "" // add if statement and color based on  item type data.data[title].attributes.item_type        
+        tr.appendChild(th);
+        tr.appendChild(td)
+        itemList.appendChild(tr)
   }
+
 }
 
 async function pcoPlan() {
@@ -135,10 +152,8 @@ async function pcoPlan() {
 	}
 	const data = await response.json();
   
-  document.querySelector('#pcoDate').innerText = data.data[0].attributes.short_dates
-  document.querySelector('#pcoSeriesTitle').innerText = data.data[0].attributes.series_title
-  document.querySelector('#pcoPlanTitle').innerText = data.data[0].attributes.title
-
+  document.querySelector('#pcoTitle').innerText = `${data.data[0].attributes.short_dates} ${data.data[0].attributes.series_title} ${innerText = data.data[0].attributes.title}`
+  
 }
 
 
