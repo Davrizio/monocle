@@ -13,9 +13,30 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div id="container">
-			<div class="card w-96 bg-base-100 shadow-xl">
-				<figure><iframe src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
+		<div class="flex w-full navbar bg-primary">
+			<a id="pcoTitle" class="btn btn-ghost normal-case text-xl"></a>
+		</div>
+
+		<div class="grid grid-rows-3 grid-flow-col gap-4">
+			<div class="relative row-span-3">
+				<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+						<tr>
+							<th scope="col" class="px-6 py-3">
+								Times
+							</th>
+							<th scope="col" class="px-6 py-3">
+								Order
+							</th>
+						</tr>
+					</thead>
+					<tbody id="pco">
+					</tbody>
+				</table>
+			</div>
+
+			<div class="row-span-2 col-span-2 card bg-primary shadow-xl">
+				<figure><iframe class="w-full aspect-video" src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
 				<div class="card-body">
 				<h2 class="card-title">Stream Title</h2>
 				<p>Stream Description</p>
@@ -24,11 +45,11 @@
 				</div>
 				</div>
 			</div>
-		
-			<div class="card w-96 bg-base-100 shadow-xl">
+
+			<div class="row-span-2 col-span-2 card bg-secondary shadow-xl">
 				<div class="card-body">
 					<div class="card-actions justify-end">
-						<button name="button" class="btn btn-square btn-sm">
+						<button id="button" class="btn btn-square btn-sm">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
 						</button>
 					</div>
@@ -38,21 +59,11 @@
 					<h3 id="currentLook">Current Look</h3>
 					<h3 id="currentStage">Current Stage</h3>
 				</div>
-				<figure><img id="currentStageImage" src="/images/stock/photo-1606107557195-0e29a4b5b4aa.jpg" alt="Shoes" /></figure>
+				<figure><img id="currentStageImage" src="" alt="current stage layout" /></figure>
 			</div>
+
 			
-			<div class="overflow-x-auto">
-				<table class="table w-full">
-				  <thead>
-					<tr>
-					  <th>Times</th>
-					  <th id="pcoTitle">PCO</th>
-					</tr>
-				  </thead>
-				  <tbody id="pco"></tbody>
-				</table>
-			</div>
-			
+
 		</div>
 
 		<script type="text/javascript" src="js/main.js"></script>

@@ -1,7 +1,7 @@
-//document.querySelector('button').addEventListener('click', proPresenterActivePresentation)
-//document.querySelector('button').addEventListener('click', proPresenterActivePresentationSlide)
-//document.querySelector('button').addEventListener('click', proPresenterActivePresentationLook)
-//document.querySelector('button').addEventListener('click', proPresenterActivePresentationStage)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentation)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentationLook)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentationStage)
 
 document.addEventListener('DOMContentLoaded', nextWeekend)
 
@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', nextWeekend)
 
 //ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
 
-/*function proPresenterActivePresentation(){
+function proPresenterActivePresentation(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
@@ -62,7 +62,7 @@ function proPresenterActivePresentationStage(){
       console.log(`error ${err}`)
   });
   setTimeout(proPresenterActivePresentationSlide, 10000)
-} */
+}
 
 ///// Planning Center Live ///////
 
@@ -112,7 +112,6 @@ async function pcoPlanItems() {
 	const data = await response.json();
 
   let itemList = document.querySelector("#pco")
-  console.log(data)
   
   for(title in data.data){
     let minutes = Math.floor(data.data[title].attributes.length / 60)
@@ -127,9 +126,10 @@ async function pcoPlanItems() {
     }else{
       th.textContent = `${minutes}:${secondsPad}`
     }
-
         td.textContent = data.data[title].attributes.title;
-        td.className = "" // add if statement and color based on  item type data.data[title].attributes.item_type        
+        tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+        th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+        td.className = "px-6 py-4" // add if statement and color based on  item type data.data[title].attributes.item_type        
         tr.appendChild(th);
         tr.appendChild(td)
         itemList.appendChild(tr)
