@@ -8449,6 +8449,10 @@ html{
   margin-top: 0.5rem;
 }
 
+.mb-2{
+  margin-bottom: 0.5rem;
+}
+
 .box-border{
   box-sizing: border-box;
 }

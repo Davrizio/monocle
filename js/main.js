@@ -77,9 +77,11 @@ let closestDateId = ''
 function nextWeekend(){
   if(now.getDay() === 0){
     closestDate.setDate(closestDate.getDate() - 1)
+  }if(now.getDay() === 6){
+    closestDate = now
   }else{
     for(i=1; i<7; i++){
-      if(now.getDay() + i === 6 || now.getDay() === 6){
+      if(now.getDay() + i === 6){
       closestDate.setDate(closestDate.getDate() + i)
       }
     }
@@ -90,7 +92,8 @@ function nextWeekend(){
       closestDateId = localStorage.key(i)
     }
   }
-
+console.log(closestDate)
+console.log(now)
   pcoPlan()
 
   pcoPlanItems()
