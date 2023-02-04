@@ -8405,8 +8405,16 @@ html{
   isolation: auto;
 }
 
+.col-span-1{
+  grid-column: span 1 / span 1;
+}
+
 .col-span-2{
   grid-column: span 2 / span 2;
+}
+
+.row-span-1{
+  grid-row: span 1 / span 1;
 }
 
 .row-span-2{
@@ -8447,10 +8455,6 @@ html{
 
 .mt-2{
   margin-top: 0.5rem;
-}
-
-.mb-2{
-  margin-bottom: 0.5rem;
 }
 
 .box-border{
@@ -8547,14 +8551,6 @@ html{
 
 .aspect-video{
   aspect-ratio: 16 / 9;
-}
-
-.h-6{
-  height: 1.5rem;
-}
-
-.w-6{
-  width: 1.5rem;
 }
 
 .w-full{
@@ -8879,6 +8875,10 @@ html{
 
 .grid-flow-col-dense{
   grid-auto-flow: column dense;
+}
+
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .grid-rows-3{
@@ -9443,11 +9443,6 @@ html{
   background-color: hsl(var(--p) / var(--tw-bg-opacity));
 }
 
-.bg-secondary{
-  --tw-bg-opacity: 1;
-  background-color: hsl(var(--s) / var(--tw-bg-opacity));
-}
-
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
@@ -9570,6 +9565,11 @@ html{
 .px-0{
   padding-left: 0px;
   padding-right: 0px;
+}
+
+.px-3{
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .px-6{
@@ -10130,6 +10130,35 @@ html{
     .sm\:container{
       max-width: 1536px;
     }
+  }
+}
+
+@media (min-width: 1024px){
+  .lg\:btn-group-horizontal{
+    flex-direction: row;
+  }
+
+  .lg\:btn-group-horizontal .btn-group .btn:not(:first-child):not(:last-child){
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  .lg\:btn-group-horizontal .btn-group .btn:first-child:not(:last-child){
+    margin-left: -1px;
+    margin-top: -0px;
+    border-top-left-radius: var(--rounded-btn, 0.5rem);
+    border-top-right-radius: 0;
+    border-bottom-left-radius: var(--rounded-btn, 0.5rem);
+    border-bottom-right-radius: 0;
+  }
+
+  .lg\:btn-group-horizontal .btn-group .btn:last-child:not(:first-child){
+    border-top-left-radius: 0;
+    border-top-right-radius: var(--rounded-btn, 0.5rem);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: var(--rounded-btn, 0.5rem);
   }
 }
 

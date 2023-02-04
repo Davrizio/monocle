@@ -3,6 +3,7 @@
     "tailwindcss": "^3.2.6"
   },
   "dependencies": {
-    "daisyui": "^2.50.0"
+    "daisyui": "^2.50.0",
+    "osc": "^2.4.3"
   }
 }

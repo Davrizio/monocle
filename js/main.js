@@ -1,11 +1,11 @@
+
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentation)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationLook)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationStage)
 
 document.addEventListener('DOMContentLoaded', nextWeekend)
-
-
+document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 //////* PROPRESENTER
 
@@ -77,7 +77,7 @@ let closestDateId = ''
 function nextWeekend(){
   if(now.getDay() === 0){
     closestDate.setDate(closestDate.getDate() - 1)
-  }if(now.getDay() === 6){
+  }else if(now.getDay() === 6){
     closestDate = now
   }else{
     for(i=1; i<7; i++){
@@ -92,8 +92,7 @@ function nextWeekend(){
       closestDateId = localStorage.key(i)
     }
   }
-console.log(closestDate)
-console.log(now)
+
   pcoPlan()
 
   pcoPlanItems()
@@ -179,4 +178,25 @@ async function pcoPlanUpdate() {
   for(id in data.data){
     localStorage.setItem(data.data[id].id, new Date(data.data[id].attributes.sort_date))
   }  
+}
+
+//Companion HTTP Commands //
+
+function clearCommandMessage(){
+  document.querySelector('#companionStatus').innerText = ``
+}
+
+function compButton1(){
+  fetch(`http://192.168.0.193:8000/press/bank/1/26`)
+  .then(data => {
+      document.querySelector('#companionStatus').innerText = `Command Success!`
+      console.log(data.statusText)
+    })
+  .catch(err => {
+      document.querySelector('#companionStatus').innerText = `Command Failed!`
+      console.log(`error ${err}`)
+  });
+  setTimeout(() => {
+    document.querySelector('#companionStatus').innerText = ''
+  }, 2000);
 }
