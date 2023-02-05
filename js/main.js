@@ -182,21 +182,19 @@ async function pcoPlanUpdate() {
 
 //Companion HTTP Commands //
 
-function clearCommandMessage(){
-  document.querySelector('#companionStatus').innerText = ``
-}
+let companionAddress = '192.168.0.193:8000'
 
 function compButton1(){
-  fetch(`http://192.168.0.193:8000/press/bank/1/26`)
+  fetch(`http://${companionAddress}/press/bank/1/26`)
   .then(data => {
-      document.querySelector('#companionStatus').innerText = `Command Success!`
+      document.querySelector('#compBtn1').className = `btn btn-success`
       console.log(data.statusText)
     })
   .catch(err => {
-      document.querySelector('#companionStatus').innerText = `Command Failed!`
+      document.querySelector('#companionStatus').className = `btn btn-warning`
       console.log(`error ${err}`)
   });
   setTimeout(() => {
-    document.querySelector('#companionStatus').innerText = ''
+    document.querySelector('#compBtn1').className = 'btn'
   }, 2000);
 }
