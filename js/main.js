@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', proPresenterActivePresentation)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationLook)
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationStage)
+document.addEventListener('DOMContentLoaded', proPresenterCurrentTimer)
+document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline)
 
 document.addEventListener('DOMContentLoaded', nextWeekend)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
@@ -62,6 +64,31 @@ function proPresenterActivePresentationStage(){
       console.log(`error ${err}`)
   });
   setTimeout(proPresenterActivePresentationSlide, 10000)
+}
+
+function proPresenterCurrentTimer(){
+  fetch(`http://192.168.0.125:1025/v1/timers/current`)
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterCurrentTimer, 1000)
+}
+
+function proPresenterActiveTimeline(){
+  fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
+  .then(res => res.json()) // parse response as JSON
+  .then(data => {
+      console.log(data)
+      document.querySelector('#timeline').innerText = `Active Timeline ${Math.ceil(data.current_time)}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActiveTimeline, 1000)
 }
 
 ///// Planning Center Live ///////
