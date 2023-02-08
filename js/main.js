@@ -11,17 +11,18 @@ document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 //////* PROPRESENTER
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected
+
+let currentSlideUUID = ''
+let currentSlideNum = ''
 
 function proPresenterActivePresentation(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active`)
-  .then(res => res.json()) // parse response as JSON
+  .then(res => res.json())
   .then(data => {
-      if(data.presentation.id.name == undefined){
-        document.querySelector('#currentPresentation').innerText = "No Presentation Active"
-      }else{
-        document.querySelector('#currentPresentation').innerText = `Current Presentation ${data.presentation.id.name}`
-      }
+      document.querySelector('#currentPresentation').innerText = `Current Presentation ${data.presentation.id.name}`
+      currentSlideUUID = data.presentation.id.uuid
+      console.log(data.presentation.id.uuid)
     })
   .catch(err => {
       console.log(`error ${err}`)
@@ -34,11 +35,14 @@ function proPresenterActivePresentationSlide(){
   .then(res => res.json()) // parse response as JSON
   .then(data => {
       document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
+      currentSlideNum = data.presentation_index.index
+      document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
   setTimeout(proPresenterActivePresentationSlide, 3000)
+  
 }
 
 function proPresenterActivePresentationLook(){
@@ -77,18 +81,28 @@ function proPresenterCurrentTimer(){
   });
   setTimeout(proPresenterCurrentTimer, 1000)
 }
-
+// do the min/sec breakdown 
 function proPresenterActiveTimeline(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
   .then(res => res.json()) // parse response as JSON
   .then(data => {
-      console.log(data)
       document.querySelector('#timeline').innerText = `Active Timeline ${Math.ceil(data.current_time)}`
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
   setTimeout(proPresenterActiveTimeline, 1000)
+}
+
+function proPresenterCurrentSlideImage(){
+  fetch(`http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/`)
+  .then(data => {
+      document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideIndex}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  //setTimeout(proPresenterActiveTimeline, 1000)
 }
 
 ///// Planning Center Live ///////
