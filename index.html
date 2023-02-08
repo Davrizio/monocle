@@ -6,7 +6,6 @@
 
 		<title>Monocle</title>
 
-		<!-- external CSS link -->
 		<link rel="stylesheet" href="dist/output.css">
 		<link rel="stylesheet" href="css/normalize.css">
 		<link rel="stylesheet" href="css/style.css">
@@ -41,29 +40,85 @@
 			</div>
 
 			<div class="card row-span-1 col-span-1 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
-				<div class="card-body">
-					<h2 class="card-title"></h2>
-					<h3 id="currentTimer"></h3>
+				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
+					<div class="row-span-1 col-span-12">
+						<h2 class="card-title">GFX 2</h2>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3 id="currentTimer2">Timer</h3>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3 id="timeline2">Timeline</h3>
+					</div>
+					<div class="row-span-2 col-span-12">
+						<h2 id="currentPresentation2">Current Presentation</h2>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentSlide2">Current Slide</h3>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentLook2">Current Look</h3>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentStage2">Current Stage</h3>
+					</div>
+					<div class="row-span-5 col-span-6">
+						<img id="nextSlideImage2" src="" alt="next slide" />
+					</div>
+					<div class="row-span-5 col-span-6">
+						<img id="currentSlideImage2" src="" alt="current slide" />
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3>Next Slide</h3>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3>Current Slide</h3>
+					</div>
 				</div>
-				<figure><img id="currentSlideImage" src="" alt="current slide" /></figure>
 			</div>
 
 			<div class="card row-span-1 col-span-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
-				<div class="card-body">
-					<h2 class="card-title">Propresenter</h2>
-					<h2 id="currentPresentation">Current Presentation</h2>
-					<h3 id="currentSlide">Current Slide</h3>
-					<h3 id="currentLook">Current Look</h3>
-					<h3 id="currentStage">Current Stage</h3>
-					<h3 id="timeline">Timeline</h3>
+				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
+					<div class="row-span-1 col-span-12">
+						<h2 class="card-title">GFX 1</h2>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3 id="currentTimer">Timer</h3>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3 id="timeline">Timeline</h3>
+					</div>
+					<div class="row-span-2 col-span-12">
+						<h2 id="currentPresentation">Current Presentation</h2>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentSlide">Current Slide</h3>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentLook">Current Look</h3>
+					</div>
+					<div class="row-span-1 col-span-4">
+						<h3 id="currentStage">Current Stage</h3>
+					</div>
+					<div class="row-span-5 col-span-6">
+						<img id="nextSlideImage" src="" alt="next slide" />
+					</div>
+					<div class="row-span-5 col-span-6">
+						<img id="currentSlideImage" src="" alt="current slide" />
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3>Next Slide</h3>
+					</div>
+					<div class="row-span-1 col-span-6">
+						<h3>Current Slide</h3>
+					</div>
 				</div>
-				<figure><img id="currentStageImage" src="" alt="current stage layout" /></figure>
 			</div>
 
 			<div class="card flex row-span-2 col-span-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
-				<div class="card-body">
-					<h2 class="card-title">Companion</h2>
-					<div class="flex justify-center space-x-3">
+				<div class="grid grid-rows-9 grid-cols-8 place-items-center card-body">
+					<h2 class="card-title row-span-1 col-span-8">Companion</h2>
+					<div class="row-span-1 col-span-8">
 						<button id="compBtn1" class="btn w-full sm:w-full md:w-24 lg:w-32">BARCO Tag</button>
 						<button id="compBtn2" class="btn w-full sm:w-full md:w-24 lg:w-32">BARCO Iso</button>
 						<button id="compBtn3" class="btn w-full sm:w-full md:w-24 lg:w-32">BARCO RP BCDGND</button>
@@ -72,8 +127,7 @@
 						<button id="compBtn6" class="btn w-full sm:w-full md:w-24 lg:w-32">SERMON</button>
 						<button id="compBtn7" class="btn w-full sm:w-full md:w-24 lg:w-32">TRANS</button>
 					</div>
-					<div class="divider"></div>
-					<div class="flex justify-center space-x-3">
+					<div class="row-span-1 col-span-8">
 						<button id="compBtn8" class="btn w-full sm:w-full md:w-24 lg:w-32">PRE</button>
 						<button id="compBtn9" class="btn w-full sm:w-full md:w-24 lg:w-32">VIDEO</button>
 						<button id="compBtn10" class="btn w-full sm:w-full md:w-24 lg:w-32">BLACK</button>
@@ -82,8 +136,7 @@
 						<button id="compBtn13" class="btn w-full sm:w-full md:w-24 lg:w-32">POST</button>
 						<button id="compBtn14" class="btn w-full sm:w-full md:w-24 lg:w-32">GFX/PGM TO BLDG</button>
 					</div>
-					<div class="divider"></div>
-					<div class="flex justify-center space-x-3">
+					<div class="row-span-1 col-span-8">
 						<button id="compBtn15" class="btn w-full sm:w-full md:w-24 lg:w-32">CAM 1</button>
 						<button id="compBtn16" class="btn w-full sm:w-full md:w-24 lg:w-32">CAM 2</button>
 						<button id="compBtn17" class="btn w-full sm:w-full md:w-24 lg:w-32">CAM 3</button>
@@ -92,8 +145,7 @@
 						<button id="compBtn20" class="btn w-full sm:w-full md:w-24 lg:w-32">KEY 1 TOGGLE</button>
 						<button id="compBtn21" class="btn w-full sm:w-full md:w-24 lg:w-32">AUTO TRANS</button>
 					</div>
-					<div class="divider"></div>
-					<div class="flex justify-center space-x-3">
+					<div class="row-span-1 col-span-8">
 						<button id="compBtn22" class="btn w-full sm:w-full md:w-24 lg:w-32">VOL UP</button>
 						<button id="compBtn23" class="btn w-full sm:w-full md:w-24 lg:w-32">VOL DOWN</button>
 						<button id="compBtn24" class="btn w-full sm:w-full md:w-24 lg:w-32">PGM AUDIO</button>

@@ -9,6 +9,8 @@ document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline)
 document.addEventListener('DOMContentLoaded', nextWeekend)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
+//npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
+
 //////* PROPRESENTER
 
 //ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected
@@ -22,7 +24,6 @@ function proPresenterActivePresentation(){
   .then(data => {
       document.querySelector('#currentPresentation').innerText = `Current Presentation ${data.presentation.id.name}`
       currentSlideUUID = data.presentation.id.uuid
-      console.log(data.presentation.id.uuid)
     })
   .catch(err => {
       console.log(`error ${err}`)
@@ -37,6 +38,7 @@ function proPresenterActivePresentationSlide(){
       document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
       currentSlideNum = data.presentation_index.index
       document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
+      document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum + 1}`
     })
   .catch(err => {
       console.log(`error ${err}`)
@@ -62,7 +64,6 @@ function proPresenterActivePresentationStage(){
   .then(res => res.json()) // parse response as JSON
   .then(data => {
       document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
-      document.querySelector('#currentStageImage').src = `http://192.168.0.125:1025/v1/stage/layout/${data.index}/thumbnail`
     })
   .catch(err => {
       console.log(`error ${err}`)
