@@ -5,16 +5,20 @@ document.addEventListener('DOMContentLoaded', proPresenterActivePresentationLook
 document.addEventListener('DOMContentLoaded', proPresenterActivePresentationStage)
 document.addEventListener('DOMContentLoaded', proPresenterCurrentTimer)
 document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentation2)
+document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide2)
+document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline2)
 
 document.addEventListener('DOMContentLoaded', nextWeekend)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
 
-//////* PROPRESENTER
+////// PROPRESENTER GFX1 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected
-
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected | Add Black Slide when there is no next slide available
+//add current media countdown
+//add slide x of x instead of just slide num
 let currentSlideUUID = ''
 let currentSlideNum = ''
 
@@ -33,7 +37,7 @@ function proPresenterActivePresentation(){
 
 function proPresenterActivePresentationSlide(){
   fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
-  .then(res => res.json()) // parse response as JSON
+  .then(res => res.json())
   .then(data => {
       document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
       currentSlideNum = data.presentation_index.index
@@ -61,7 +65,7 @@ function proPresenterActivePresentationLook(){
 
 function proPresenterActivePresentationStage(){
   fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
-  .then(res => res.json()) // parse response as JSON
+  .then(res => res.json())
   .then(data => {
       document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
     })
@@ -73,7 +77,7 @@ function proPresenterActivePresentationStage(){
 
 function proPresenterCurrentTimer(){
   fetch(`http://192.168.0.125:1025/v1/timers/current`)
-  .then(res => res.json()) // parse response as JSON
+  .then(res => res.json())
   .then(data => {
       document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
     })
@@ -85,7 +89,7 @@ function proPresenterCurrentTimer(){
 // do the min/sec breakdown 
 function proPresenterActiveTimeline(){
   fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
-  .then(res => res.json()) // parse response as JSON
+  .then(res => res.json())
   .then(data => {
       document.querySelector('#timeline').innerText = `Active Timeline ${Math.ceil(data.current_time)}`
     })
@@ -95,15 +99,53 @@ function proPresenterActiveTimeline(){
   setTimeout(proPresenterActiveTimeline, 1000)
 }
 
-function proPresenterCurrentSlideImage(){
-  fetch(`http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/`)
+////// PROPRESENTER GFX2 ////////
+
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected | Add Black Slide when there is no next slide available
+
+let currentSlideUUID2 = ''
+let currentSlideNum2 = ''
+
+function proPresenterActivePresentation2(){
+  fetch(`http://192.168.0.124:1030/v1/presentation/active`)
+  .then(res => res.json())
   .then(data => {
-      document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideIndex}`
+      document.querySelector('#currentPresentation2').innerText = `Current Presentation | ${data.presentation.id.name}`
+      currentSlideUUID2 = data.presentation.id.uuid
     })
   .catch(err => {
       console.log(`error ${err}`)
   });
-  //setTimeout(proPresenterActiveTimeline, 1000)
+  setTimeout(proPresenterActivePresentation2, 5000)
+}
+
+function proPresenterActivePresentationSlide2(){
+  fetch(`http://192.168.0.124:1030/v1/presentation/slide_index`)
+  .then(res => res.json())
+  .then(data => {
+      document.querySelector('#currentSlide2').innerText = `Slide Number ${data.presentation_index.index}`
+      currentSlideNum2 = data.presentation_index.index
+      document.querySelector('#currentSlideImage2').src = `http://192.168.0.124:1030/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2}`
+      document.querySelector('#nextSlideImage2').src = `http://192.168.0.124:1030/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2 + 1}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActivePresentationSlide2, 3000)
+  
+}
+
+// do the min/sec breakdown 
+function proPresenterActiveTimeline2(){
+  fetch(`http://192.168.0.124:1030/v1/presentation/active/timeline`)
+  .then(res => res.json())
+  .then(data => {
+      document.querySelector('#timeline2').innerText = `Active Timeline ${Math.ceil(data.current_time)}`
+    })
+  .catch(err => {
+      console.log(`error ${err}`)
+  });
+  setTimeout(proPresenterActiveTimeline2, 1000)
 }
 
 ///// Planning Center Live ///////
