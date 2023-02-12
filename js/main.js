@@ -283,20 +283,22 @@ async function pcoPlanItems() {
     let th = document.createElement("th")
     let td = document.createElement("td")
 
-    if(timeConvert[0] === 0 && timeConvert[0] === 0){
+    let time = timeConvert(data.data[title].attributes.length)
+
+    if(time == '0:00'){
       th.textContent = ''
     }else{
-      th.textContent = timeConvert(data.data[title].attributes.length)
+      th.textContent = time
     }
-        td.textContent = data.data[title].attributes.title;
-        tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-        th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-        td.className = "px-6 py-4" // add if statement and color based on  item type data.data[title].attributes.item_type        
-        tr.appendChild(th);
-        tr.appendChild(td)
-        itemList.appendChild(tr)
+    
+    td.textContent = data.data[title].attributes.title;
+    tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+    th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+    td.className = "px-6 py-4" // add if statement and color based on  item type data.data[title].attributes.item_type        
+    tr.appendChild(th);
+    tr.appendChild(td)
+    itemList.appendChild(tr)
   }
-
 }
 
 async function pcoPlan() {
