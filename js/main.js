@@ -191,14 +191,12 @@ async function proPresenterActivePresentation2() {
 async function proPresenterActivePresentationSlide2() {
 	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/slide_index`)
   if (!response.ok) {
-		throw new Error(`Error!`);
+		throw new Error(`Error!`)
 	}
 	const data = await response.json()
   if(data.presentation_index === null){
     document.querySelector('#currentSlideImage2').src = `images/gfx2blank.png`
   }else{
-    document.querySelector('#currentSlide2').innerText = `Slide Number ${data.presentation_index.index}`
-    currentSlideNum2 = data.presentation_index.index
     document.querySelector('#currentSlideImage2').src = `http://192.168.0.124:1030/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2}`
   }
 }
@@ -290,7 +288,7 @@ async function pcoPlanItems() {
     }else{
       th.textContent = time
     }
-    
+
     td.textContent = data.data[title].attributes.title;
     tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
     th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
