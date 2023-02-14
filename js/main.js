@@ -1,15 +1,4 @@
-
-document.addEventListener('DOMContentLoaded', proPresenterActivePresentation)
-document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide)
-document.addEventListener('DOMContentLoaded', proPresenterNextActivePresentationSlide)
-document.addEventListener('DOMContentLoaded', proPresenterActivePresentationLook)
-document.addEventListener('DOMContentLoaded', proPresenterActivePresentationStage)
-document.addEventListener('DOMContentLoaded', proPresenterCurrentTimer)
-document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline)
-//document.addEventListener('DOMContentLoaded', proPresenterActivePresentation2)
-//document.addEventListener('DOMContentLoaded', proPresenterActivePresentationSlide2)
-//document.addEventListener('DOMContentLoaded', proPresenterNextActivePresentationSlide2)
-//document.addEventListener('DOMContentLoaded', proPresenterActiveTimeline2)
+document.addEventListener('DOMContentLoaded', gfx1Data)
 document.addEventListener('DOMContentLoaded', gfx2Data)
 document.addEventListener('DOMContentLoaded', nextWeekend)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
@@ -31,116 +20,113 @@ function timeConvert(sec){
   return `${minutes}:${secondsPad}`
 }
 
-function proPresenterActivePresentation(){
-  fetch(`http://192.168.0.125:1025/v1/presentation/active`)
-  .then(res => res.json())
-  .then(data => {
-      document.querySelector('#currentPresentation').innerText = `Current Presentation ${data.presentation.id.name}`
-      currentSlideUUID = data.presentation.id.uuid
-    })
-  .catch(err => {
-      console.log(`error ${err}`)
-  })
+async function gfx1Data(){
+  const uuid = await proPresenterActivePresentationUUID()
+  const slideIndex = await proPresenterActivePresentationSlideIndex()
+  proPresenterActivePresentation()
+  proPresenterActivePresentationSlide()
+  proPresenterNextActivePresentationSlide()
+  proPresenterActiveTimeline()
+  proPresenterActivePresentationLook()
+  proPresenterActivePresentationStage()
+  proPresenterCurrentTimer()
+  setTimeout(gfx1Data, 1000)
 }
 
-function proPresenterActivePresentationSlide(){
-  fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
-  .then(res => {
-    if(res.ok){
-      return res.json()
-    }else if(res.status === 404){
-      console.log(`error ${err}`)
-      document.querySelector('#currentSlideImage').src = `images/gfx1blank.png`
-    }
-  })
-  .then(data => {
-    if(data.presentation_index === null){
-      document.querySelector('#currentSlideImage').src = `images/gfx1blank.png`
-    }else{
-      document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
-      currentSlideNum = data.presentation_index.index
-      document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
-    }
-  })
-  .catch(err => {
-      console.log(`error ${err}`)
-  })
+async function proPresenterActivePresentationUUID() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active`);
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json();
+  currentSlideUUID = data.presentation.id.uuid
 }
 
-function proPresenterNextActivePresentationSlide(){
-  fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
-  .then(res => {
-    if(res.ok){
-      return res.json()
-    }else if(res.status === 404){
-      console.log(`error ${err}`)
-      document.querySelector('#nextSlideImage').src = `images/gfx1blank.png`
-    }
-  })
-  .then(data => {
-    if(data.presentation_index === null){
-      document.querySelector('#nextSlideImage').src = `images/gfx1blank.png`
-    }else{
-      document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum + 1}`
-    }
-  })
-  .catch(err => {
-      console.log(`error ${err}`)
-  })
-  setTimeout(proPresenterNextActivePresentationSlide, 3000)
+async function proPresenterActivePresentationSlideIndex() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
+  currentSlideNum = data.presentation_index.index
 }
 
-function proPresenterActivePresentationLook(){
-  fetch(`http://192.168.0.125:1025/v1/look/current`)
-  .then(res => res.json()) // parse response as JSON
-  .then(data => {
-      document.querySelector('#currentLook').innerText = `Current Look ${data.id.name}`
-    })
-  .catch(err => {
-      console.log(`error ${err}`)
-  });
-  setTimeout(proPresenterActivePresentationSlide, 10000)
+async function proPresenterActivePresentation() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active`);
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json();
+  document.querySelector('#currentPresentation').innerText = `Current Presentation | ${data.presentation.id.name}`
+  currentSlideUUID2 = data.presentation.id.uuid
 }
 
-function proPresenterActivePresentationStage(){
-  fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
-  .then(res => res.json())
-  .then(data => {
-      document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
-    })
-  .catch(err => {
-      console.log(`error ${err}`)
-  });
-  setTimeout(proPresenterActivePresentationSlide, 10000)
+async function proPresenterActivePresentationSlide() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
+  if (!response.ok) {
+		throw new Error(`Error!`)
+	}
+	const data = await response.json()
+  if(data.presentation_index === null){
+    document.querySelector('#currentSlideImage').src = `images/gfx1blank.png`
+  }else{
+    document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
+  }
 }
 
-function proPresenterCurrentTimer(){
-  fetch(`http://192.168.0.125:1025/v1/timers/current`)
-  .then(res => res.json())
-  .then(data => {
-      document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
-    })
-  .catch(err => {
-      console.log(`error ${err}`)
-  });
-  setTimeout(proPresenterCurrentTimer, 1000)
+async function proPresenterNextActivePresentationSlide() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  if(data.presentation_index === null){
+    document.querySelector('#nextSlideImage').src = `images/gfx1blank.png`
+  }else{
+    document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum + 1}`
+  }
 }
-// do the min/sec breakdown 
-function proPresenterActiveTimeline(){
-  fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
-  .then(res => res.json())
-  .then(data => {
-      document.querySelector('#timeline').innerText = `Active Timeline ${Math.ceil(data.current_time)}`
-    })
-  .catch(err => {
-      console.log(`error ${err}`)
-  });
-  setTimeout(proPresenterActiveTimeline, 1000)
+
+async function proPresenterActiveTimeline() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  document.querySelector('#timeline').innerText = `Active Timeline ${timeConvert(data.current_time)}`
+}
+
+async function proPresenterActivePresentationLook() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/look/current`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  document.querySelector('#currentLook').innerText = `Current Look ${data.id.name}`
+}
+
+async function proPresenterActivePresentationStage() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
+}
+
+async function proPresenterCurrentTimer() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/timers/current`)
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json()
+  document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
 }
 
 ////// PROPRESENTER GFX2 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected | Add Black Slide when there is no next slide available
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected
 
 let currentSlideUUID2 = ''
 let currentSlideNum2 = ''
@@ -222,7 +208,6 @@ async function proPresenterActiveTimeline2() {
 	const data = await response.json()
   document.querySelector('#timeline2').innerText = `Active Timeline ${timeConvert(data.current_time)}`
 }
-// do the min/sec breakdown 
 
 
 ///// Planning Center Live ///////
