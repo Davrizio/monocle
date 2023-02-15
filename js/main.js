@@ -12,6 +12,7 @@ document.querySelector('#compBtn1').addEventListener('click', compButton1)
 //add slide x of x instead of just slide num
 let currentSlideUUID = ''
 let currentSlideNum = ''
+let indexSum = 0
 
 function timeConvert(sec){
   let minutes = Math.floor(sec / 60)
@@ -30,7 +31,7 @@ async function gfx1Data(){
   proPresenterActivePresentationLook()
   proPresenterActivePresentationStage()
   proPresenterCurrentTimer()
-  setTimeout(gfx1Data, 1000)
+  proPresenterActivePresentationTotalIndex()
 }
 
 async function proPresenterActivePresentationUUID() {
@@ -40,6 +41,7 @@ async function proPresenterActivePresentationUUID() {
 	}
 	const data = await response.json();
   currentSlideUUID = data.presentation.id.uuid
+  setTimeout(proPresenterActivePresentationUUID, 1000)
 }
 
 async function proPresenterActivePresentationSlideIndex() {
@@ -50,6 +52,19 @@ async function proPresenterActivePresentationSlideIndex() {
 	const data = await response.json()
   document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
   currentSlideNum = data.presentation_index.index
+  setTimeout(proPresenterActivePresentationSlideIndex, 1000)
+}
+
+async function proPresenterActivePresentationTotalIndex() {
+	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}`);
+  if (!response.ok) {
+		throw new Error(`Error!`);
+	}
+	const data = await response.json();
+  for(i=0; i<data.presentation.groups.length; i++){
+    indexSum = data.presentation.groups[i].slides.length + indexSum
+  }
+  document.querySelector('#currentSlideTotal').innerText = indexSum
 }
 
 async function proPresenterActivePresentation() {
@@ -60,6 +75,7 @@ async function proPresenterActivePresentation() {
 	const data = await response.json();
   document.querySelector('#currentPresentation').innerText = `Current Presentation | ${data.presentation.id.name}`
   currentSlideUUID2 = data.presentation.id.uuid
+  setTimeout(proPresenterActivePresentation, 1000)
 }
 
 async function proPresenterActivePresentationSlide() {
@@ -73,6 +89,7 @@ async function proPresenterActivePresentationSlide() {
   }else{
     document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
   }
+  setTimeout(proPresenterActivePresentationSlide, 1000)
 }
 
 async function proPresenterNextActivePresentationSlide() {
@@ -86,6 +103,7 @@ async function proPresenterNextActivePresentationSlide() {
   }else{
     document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum + 1}`
   }
+  setTimeout(proPresenterActivePresentationSlide, 1000)
 }
 
 async function proPresenterActiveTimeline() {
@@ -95,6 +113,7 @@ async function proPresenterActiveTimeline() {
 	}
 	const data = await response.json()
   document.querySelector('#timeline').innerText = `Active Timeline ${timeConvert(data.current_time)}`
+  setTimeout(proPresenterActiveTimeline, 1000)
 }
 
 async function proPresenterActivePresentationLook() {
@@ -104,6 +123,7 @@ async function proPresenterActivePresentationLook() {
 	}
 	const data = await response.json()
   document.querySelector('#currentLook').innerText = `Current Look ${data.id.name}`
+  setTimeout(proPresenterActivePresentationLook, 1000)
 }
 
 async function proPresenterActivePresentationStage() {
@@ -113,6 +133,7 @@ async function proPresenterActivePresentationStage() {
 	}
 	const data = await response.json()
   document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
+  setTimeout(proPresenterActivePresentationStage, 1000)
 }
 
 async function proPresenterCurrentTimer() {
@@ -122,6 +143,7 @@ async function proPresenterCurrentTimer() {
 	}
 	const data = await response.json()
   document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
+  setTimeout(proPresenterCurrentTimer, 1000)
 }
 
 ////// PROPRESENTER GFX2 ////////
