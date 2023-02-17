@@ -50,8 +50,8 @@ async function proPresenterActivePresentationSlideIndex() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index}`
-  currentSlideNum = data.presentation_index.index
+  document.querySelector('#currentSlide').innerText = `Slide Number ${data.presentation_index.index + 1}`
+  currentSlideNum = data.presentation_index.index + 1
 }
 
 async function proPresenterActivePresentationTotalIndex() {
@@ -87,7 +87,7 @@ async function proPresenterActivePresentationSlide() {
   if(data.presentation_index === null){
     document.querySelector('#currentSlideImage').src = `images/gfx1blank.png`
   }else{
-    document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
+    document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum - 1}`
   }
 }
 
@@ -97,10 +97,10 @@ async function proPresenterNextActivePresentationSlide() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  if(data.presentation_index === null){
+  if(indexSum === 0 || indexSum == currentSlideNum){
     document.querySelector('#nextSlideImage').src = `images/gfx1blank.png`
   }else{
-    document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum + 1}`
+    document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
   }
 }
 
@@ -194,7 +194,6 @@ async function proPresenterActivePresentationTotalIndex2() {
   }
   document.querySelector('#currentSlideTotal2').innerText = `of ${indexSum2}`
   indexSum2 = groupTotal.reduce((a,b)=>a+b)
-  setTimeout(proPresenterActivePresentationTotalIndex2, 1000)
 }
 
 async function proPresenterActivePresentation2() {
