@@ -63,7 +63,7 @@ async function proPresenterActivePresentationTotalIndex() {
   for(i=0; i<data.presentation.groups.length; i++){
     groupTotal.push(data.presentation.groups[i].slides.length)
   }
-  document.querySelector('#currentSlideTotal').innerText = `of ${indexSum}`
+  document.querySelector('#currentSlideTotal').innerText = `${indexSum}`
   indexSum = groupTotal.reduce((a,b)=>a+b)
 }
 
@@ -73,7 +73,7 @@ async function proPresenterActivePresentation() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json();
-  document.querySelector('#currentPresentation').innerText = `Current Presentation | ${data.presentation.id.name}`
+  document.querySelector('#currentPresentation').innerText = `Current Presentation - ${data.presentation.id.name}`
   currentSlideUUID2 = data.presentation.id.uuid
 }
 
@@ -97,7 +97,7 @@ async function proPresenterActiveTimeline() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#timeline').innerText = `Active Timeline ${timeConvert(data.current_time)}`
+  document.querySelector('#timeline').innerText = `Active Timeline Elapsed Time: ${timeConvert(data.current_time)}`
 }
 
 async function proPresenterActivePresentationLook() {
@@ -106,7 +106,7 @@ async function proPresenterActivePresentationLook() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#currentLook').innerText = `Current Look ${data.id.name}`
+  document.querySelector('#currentLook').innerText = `Current Look - ${data.id.name}`
 }
 
 async function proPresenterActivePresentationStage() {
@@ -115,7 +115,7 @@ async function proPresenterActivePresentationStage() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#currentStage').innerText = `Current Stage Layout ${data.name}`
+  document.querySelector('#currentStage').innerText = `Current Stage Layout - ${data.name}`
 }
 
 async function proPresenterCurrentTimer() {
@@ -124,7 +124,7 @@ async function proPresenterCurrentTimer() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#currentTimer').innerText = `Current Preservice Timer ${data[1].time}`
+  document.querySelector('#currentTimer').innerText = `Current Preservice Timer: ${data[1].time}`
 }
 
 ////// PROPRESENTER GFX2 ////////
@@ -178,7 +178,7 @@ async function proPresenterActivePresentationTotalIndex2() {
   for(i=0; i<data.presentation.groups.length; i++){
     groupTotal.push(data.presentation.groups[i].slides.length)
   }
-  document.querySelector('#currentSlideTotal2').innerText = `of ${indexSum2}`
+  document.querySelector('#currentSlideTotal2').innerText = `${indexSum2}`
   indexSum2 = groupTotal.reduce((a,b)=>a+b)
 }
 
@@ -188,7 +188,7 @@ async function proPresenterActivePresentation2() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json();
-  document.querySelector('#currentPresentation2').innerText = `Current Presentation | ${data.presentation.id.name}`
+  document.querySelector('#currentPresentation2').innerText = `Current Presentation - ${data.presentation.id.name}`
   currentSlideUUID2 = data.presentation.id.uuid
 }
 
@@ -212,7 +212,7 @@ async function proPresenterActiveTimeline2() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#timeline2').innerText = `Active Timeline ${timeConvert(data.current_time)}`
+  document.querySelector('#timeline2').innerText = `Active Timeline Elapsed Time: ${timeConvert(data.current_time)}`
 }
 
 

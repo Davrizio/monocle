@@ -8492,6 +8492,11 @@ html{
   margin-right: 0.5rem;
 }
 
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
 }
