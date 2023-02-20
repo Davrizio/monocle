@@ -8497,6 +8497,11 @@ html{
   margin-bottom: 0.5rem;
 }
 
+.mx-1{
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
 }
@@ -8609,8 +8614,28 @@ html{
   aspect-ratio: 16 / 9;
 }
 
+.h-7{
+  height: 1.75rem;
+}
+
+.h-24{
+  height: 6rem;
+}
+
 .w-full{
   width: 100%;
+}
+
+.w-12{
+  width: 3rem;
+}
+
+.w-36{
+  width: 9rem;
+}
+
+.w-96{
+  width: 24rem;
 }
 
 .flex-shrink{
