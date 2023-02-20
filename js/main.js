@@ -305,7 +305,9 @@ async function pcoPlan() {
 	}
 	const data = await response.json();
   
-  document.querySelector('#pcoTitle').innerText = `${data.data[0].attributes.short_dates} ${data.data[0].attributes.series_title} ${innerText = data.data[0].attributes.title}`
+  document.querySelector('#pcoSeries').innerText = `${data.data[0].attributes.series_title}`
+  document.querySelector('#pcoTitle').innerText = `${innerText = data.data[0].attributes.title}`
+  document.querySelector('#pcoDate').innerText = `${data.data[0].attributes.short_dates}`
 }
 
 
