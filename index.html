@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="coffee">
 	<head>
     	<meta charset="utf-8">
     	<meta name="Monocle" content="Dashboard for the Church Video Engineer">
@@ -11,18 +11,16 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div class="flex w-full navbar bg-primary">
+		<div class="flex w-full navbar bg-primary text-primary-content mb-6">
 			<span id="pcoSeries" class="normal-case text-xl navbar-start"></span>
 			<span id="pcoTitle" class="normal-case text-xl navbar-center"></span>
 			<span id="pcoDate" class="normal-case text-xl navbar-end"></span>
 		</div>
-		<div class="flex w-full navbar-end bg-primary">
-		</div>
 
 		<div class="grid grid-rows-3 grid-cols-3 gap-4 px-3 py-3">
 			<div class="row-span-3">
-				<table class=" table table-zebra w-full text-sm text-left text-gray-500 dark:text-gray-400">
-					<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+				<table class=" table w-full text-sm text-left">
+					<thead class="uppercase">
 						<tr>
 							<th class="px-6 py-3">Times</th>
 							<th class="px-6 py-3">Order</th>
@@ -32,7 +30,7 @@
 				</table>
 			</div>
 
-			<div class="card row-span-1 col-span-1 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
+			<div class="card row-span-1 col-span-1 shadow-xl bg-accent text-accent-content">
 				<figure><iframe class="w-full aspect-video" src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
 				<div class="card-body">
 				<h2 class="card-title">Stream Title</h2>
@@ -43,7 +41,7 @@
 				</div>
 			</div>
 
-			<div class="card row-span-1 col-span-1 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
+			<div class="card row-span-1 col-span-1 shadow-xl bg-accent text-accent-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
 					<div class="row-span-1 col-span-12">
 						<h2 class="card-title">GFX 2</h2>
@@ -75,7 +73,7 @@
 				</div>
 			</div>
 
-			<div class="card row-span-1 col-span-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
+			<div class="card row-span-1 col-span-2 shadow-xl bg-accent text-accent-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
 					<div class="row-span-1 col-span-12">
 						<h2 class="card-title">GFX 1</h2>
@@ -116,7 +114,7 @@
 				</div>
 			</div>
 
-			<div class="card flex row-span-2 col-span-2 bg-gray-50 dark:bg-gray-700 dark:text-gray-400 shadow-xl">
+			<div class="card flex row-span-2 col-span-2 shadow-xl bg-accent">
 				<div class="grid grid-rows-8 grid-cols-8 place-items-center card-body">
 					<h2 class="card-title row-span-1 col-span-8">Companion</h2>
 					<div class="row-span-1 col-span-8">

@@ -9,10 +9,6 @@
 }
 
 /******************************************
-/* LAYOUT
-/*******************************************/
-
-/******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
 
@@ -8477,6 +8473,10 @@ html{
   margin: 0.5rem;
 }
 
+.mb-6{
+  margin-bottom: 1.5rem;
+}
+
 .mt-2{
   margin-top: 0.5rem;
 }
@@ -9470,14 +9470,29 @@ html{
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 
-.bg-primary{
+.bg-secondary{
   --tw-bg-opacity: 1;
-  background-color: hsl(var(--p) / var(--tw-bg-opacity));
+  background-color: hsl(var(--s) / var(--tw-bg-opacity));
 }
 
 .bg-white{
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+}
+
+.bg-primary{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--p) / var(--tw-bg-opacity));
+}
+
+.bg-base-200{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b2, var(--b1)) / var(--tw-bg-opacity));
+}
+
+.bg-accent{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--a) / var(--tw-bg-opacity));
 }
 
 .decoration-slice{
@@ -9788,6 +9803,16 @@ html{
 .text-gray-900{
   --tw-text-opacity: 1;
   color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+
+.text-primary-content{
+  --tw-text-opacity: 1;
+  color: hsl(var(--pc) / var(--tw-text-opacity));
+}
+
+.text-accent-content{
+  --tw-text-opacity: 1;
+  color: hsl(var(--ac) / var(--tw-text-opacity));
 }
 
 .underline{
