@@ -8425,6 +8425,10 @@ html{
   grid-column: span 8 / span 8;
 }
 
+.col-span-3{
+  grid-column: span 3 / span 3;
+}
+
 .row-span-1{
   grid-row: span 1 / span 1;
 }
@@ -8473,12 +8477,35 @@ html{
   margin: 0.5rem;
 }
 
+.mx-6{
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.my-6{
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.mx-2{
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+}
+
 .mb-6{
   margin-bottom: 1.5rem;
 }
 
 .mt-2{
   margin-top: 0.5rem;
+}
+
+.mr-6{
+  margin-right: 1.5rem;
+}
+
+.ml-6{
+  margin-left: 1.5rem;
 }
 
 .box-border{
@@ -9495,6 +9522,31 @@ html{
   background-color: hsl(var(--a) / var(--tw-bg-opacity));
 }
 
+.bg-accent-focus{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--af, var(--a)) / var(--tw-bg-opacity));
+}
+
+.bg-primary-focus{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--pf, var(--p)) / var(--tw-bg-opacity));
+}
+
+.bg-base-100{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b1) / var(--tw-bg-opacity));
+}
+
+.bg-base-300{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--b3, var(--b2)) / var(--tw-bg-opacity));
+}
+
+.bg-base-content{
+  --tw-bg-opacity: 1;
+  background-color: hsl(var(--bc) / var(--tw-bg-opacity));
+}
+
 .decoration-slice{
   -webkit-box-decoration-break: slice;
           box-decoration-break: slice;
@@ -9813,6 +9865,16 @@ html{
 .text-accent-content{
   --tw-text-opacity: 1;
   color: hsl(var(--ac) / var(--tw-text-opacity));
+}
+
+.text-base-content{
+  --tw-text-opacity: 1;
+  color: hsl(var(--bc) / var(--tw-text-opacity));
+}
+
+.text-base-100{
+  --tw-text-opacity: 1;
+  color: hsl(var(--b1) / var(--tw-text-opacity));
 }
 
 .underline{

@@ -281,9 +281,9 @@ async function pcoPlanItems() {
     }
 
     td.textContent = data.data[title].attributes.title;
-    tr.className = "bg-white border-b dark:bg-gray-800 dark:border-gray-700"
-    th.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-    td.className = "px-6 py-4" // add if statement and color based on  item type data.data[title].attributes.item_type        
+    tr.className = "bg-accent"
+    th.className = "px-6 py-4 font-medium text-base-content whitespace-nowrap bg-base-200"
+    td.className = "px-6 py-4 text-base-content bg-base-300" // add if statement and color based on  item type data.data[title].attributes.item_type        
     tr.appendChild(th);
     tr.appendChild(td)
     itemList.appendChild(tr)
@@ -304,7 +304,7 @@ async function pcoPlan() {
 		throw new Error(`HTTP error! status: ${response.status}`);
 	}
 	const data = await response.json();
-  
+
   document.querySelector('#pcoSeries').innerText = `${data.data[0].attributes.series_title}`
   document.querySelector('#pcoTitle').innerText = `${innerText = data.data[0].attributes.title}`
   document.querySelector('#pcoDate').innerText = `${data.data[0].attributes.short_dates}`

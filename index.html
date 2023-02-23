@@ -11,26 +11,26 @@
 		<link rel="stylesheet" href="css/style.css">
 	</head>
 	<body>
-		<div class="flex w-full navbar bg-primary text-primary-content mb-6">
-			<span id="pcoSeries" class="normal-case text-xl navbar-start"></span>
+		<div class="flex w-full navbar bg-base-300 text-base-content mb-6">
+			<span id="pcoSeries" class="normal-case text-xl navbar-start ml-6"></span>
 			<span id="pcoTitle" class="normal-case text-xl navbar-center"></span>
-			<span id="pcoDate" class="normal-case text-xl navbar-end"></span>
+			<span id="pcoDate" class="normal-case text-xl navbar-end mr-6"></span>
 		</div>
 
-		<div class="grid grid-rows-3 grid-cols-3 gap-4 px-3 py-3">
-			<div class="row-span-3">
+		<div class="grid grid-rows-3 grid-cols-3 gap-4 px-3 py-3 mx-6">
+			<div class="row-span-2">
 				<table class=" table w-full text-sm text-left">
-					<thead class="uppercase">
+					<thead>
 						<tr>
-							<th class="px-6 py-3">Times</th>
-							<th class="px-6 py-3">Order</th>
+							<th class="px-6 py-3 bg-base-300 uppercase text-base-content">Times</th>
+							<th class="px-6 py-3 bg-base-300 uppercase text-base-content">Order</th>
 						</tr>
 					</thead>
 					<tbody id="pco"></tbody>
 				</table>
 			</div>
 
-			<div class="card row-span-1 col-span-1 shadow-xl bg-accent text-accent-content">
+			<div class="card row-span-1 col-span-1 shadow-xl bg-base-300 text-base-content">
 				<figure><iframe class="w-full aspect-video" src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
 				<div class="card-body">
 				<h2 class="card-title">Stream Title</h2>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 
-			<div class="card row-span-1 col-span-1 shadow-xl bg-accent text-accent-content">
+			<div class="card row-span-1 col-span-1 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
 					<div class="row-span-1 col-span-12">
 						<h2 class="card-title">GFX 2</h2>
@@ -52,11 +52,11 @@
 					<div class="row-span-2 col-span-12">
 						<h2 id="currentPresentation2">Current Presentation</h2>
 					</div>
-					<div class="row-span-1 col-span-6 place-self-end">
-						<h3 id="currentSlide2">Current Slide</h3>
-					</div>
-					<div class="row-span-1 col-span-6 place-self-start">
-						<h3 id="currentSlideTotal2">Current Total</h3>
+					<div class="flex row-span-1 col-span-12">
+						<h3 class="">Slide</h3>
+						<span id="currentSlide2" class="mx-2">0</span>
+						<h3 class="">of</h3>
+						<h3 id="currentSlideTotal2" class="mx-2">0</h3>
 					</div>
 					<div class="row-span-5 col-span-12">
 						<img id="currentSlideImage2" src="images/gfx2blank.png" alt="current slide" />
@@ -73,7 +73,7 @@
 				</div>
 			</div>
 
-			<div class="card row-span-1 col-span-2 shadow-xl bg-accent text-accent-content">
+			<div class="card row-span-1 col-span-2 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
 					<div class="row-span-1 col-span-12">
 						<h2 class="card-title">GFX 1</h2>
@@ -114,7 +114,7 @@
 				</div>
 			</div>
 
-			<div class="card flex row-span-2 col-span-2 shadow-xl bg-accent">
+			<div class="card flex row-span-2 col-span-3 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-8 grid-cols-8 place-items-center card-body">
 					<h2 class="card-title row-span-1 col-span-8">Companion</h2>
 					<div class="row-span-1 col-span-8">
