@@ -97,7 +97,7 @@ async function proPresenterActiveTimeline() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#timeline').innerText = `Active Timeline Elapsed Time: ${timeConvert(data.current_time)}`
+  document.querySelector('#timeline').innerText = `Active Timeline Elapsed Time: ${timeConvert(Math.ceil(data.current_time))}`
 }
 
 async function proPresenterActivePresentationLook() {
@@ -212,7 +212,7 @@ async function proPresenterActiveTimeline2() {
 		throw new Error(`Error!`);
 	}
 	const data = await response.json()
-  document.querySelector('#timeline2').innerText = `Active Timeline Elapsed Time: ${timeConvert(data.current_time)}`
+  document.querySelector('#timeline2').innerText = `Active Timeline Elapsed Time: ${timeConvert(Math.ceil(data.current_time))}`
 }
 
 
