@@ -129,7 +129,7 @@ async function proPresenterCurrentTimer() {
 
 ////// PROPRESENTER GFX2 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | ADD Video countdown timer
 
 let currentSlideUUID2 = ''
 let currentSlideNum2 = ''
