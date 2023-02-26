@@ -17,8 +17,27 @@
     		<h3 class="text-lg font-bold">Settings</h3>
     		<p class="py-4">Choose your theme below</p>
 			<p class="py-4">GFX 1</p>
+			<div class="form-control">
+				<label class="label">
+				  <span class="label-text">ip Address:Port</span>
+				</label>
+				<input type="text" placeholder="ex. 192.168.0.100:8000" class="input input-bordered" id="gfx1Ip" name="ipaddress"/>
+			</div>
 			<p class="py-4">GFX 2</p>
+			<div class="form-control">
+				<label class="label">
+				  <span class="label-text">ip Address:Port</span>
+				</label>
+				<input type="text" placeholder="ex. 192.168.0.100:8000" class="input input-bordered" id="gfx2Ip" name="ipaddress"/>
+			</div>
 			<p class="py-4">Companion</p>
+			<div class="form-control">
+				<label class="label">
+				  <span class="label-text">ip Address:Port</span>
+				</label>
+				<input type="text" placeholder="ex. 192.168.0.100:8000" class="input input-bordered" id="companionIp" name="ipaddress"/>
+			</div>
+			<button class="btn btn-primary hover:bg-primary">SAVE</button>
   		</label>
 	</label>
 	<body>
@@ -52,7 +71,7 @@
 
 			<div class="card row-span-1 col-span-1 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
-					<div class="badge badge-primary badge-outline row-span-1 col-span-12">
+					<div id="gfx2" class="badge badge-primary badge-outline row-span-1 col-span-12">
 						<h2 class="card-title">GFX 2</h2>
 					</div>
 					<div class="row-span-1 col-span-12">

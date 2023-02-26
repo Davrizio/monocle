@@ -1,15 +1,22 @@
 document.addEventListener('DOMContentLoaded', gfx1Data)
 document.addEventListener('DOMContentLoaded', gfx2Data)
 document.addEventListener('DOMContentLoaded', nextWeekend)
+document.querySelector('#settingSave').addEventListener('click', saveSettings)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
 
+function saveSettings(){
+  localStorage.setItem()
+  gfx1IpAddress = ''
+  gfx2IpAddress = ''
+  companionAddress = ''
+}
+
 ////// PROPRESENTER GFX1 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | Handle NULL if no slide is selected | Add Black Slide when there is no next slide available
-//add current media countdown
-//add slide x of x instead of just slide num
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
+let gfx1IpAddress = ''
 let currentSlideUUID = ''
 let currentSlideNum = ''
 let indexSum = 0
@@ -129,8 +136,8 @@ async function proPresenterCurrentTimer() {
 
 ////// PROPRESENTER GFX2 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'  | ADD Video countdown timer
-
+//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
+let gfx2IpAddress = ''
 let currentSlideUUID2 = ''
 let currentSlideNum2 = ''
 let indexSum2 = 0
