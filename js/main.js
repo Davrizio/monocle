@@ -7,10 +7,12 @@ document.querySelector('#compBtn1').addEventListener('click', compButton1)
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
 
 function saveSettings(){
-  localStorage.setItem()
-  gfx1IpAddress = ''
-  gfx2IpAddress = ''
-  companionAddress = ''
+  gfx1IpAddress = document.getElementById('gfx1Ip').value
+  gfx2IpAddress = document.getElementById('gfx2Ip').value
+  companionIpAddress = document.getElementById('companionIp').value
+  localStorage.setItem('gfx1IpAddress',gfx1IpAddress)
+  localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
+  localStorage.setItem('companionIpAddress',companionIpAddress)
 }
 
 ////// PROPRESENTER GFX1 ////////
@@ -42,7 +44,7 @@ async function gfx1Data(){
 }
 
 async function proPresenterActivePresentationUUID() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active`);
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/active`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -51,7 +53,7 @@ async function proPresenterActivePresentationUUID() {
 }
 
 async function proPresenterActivePresentationSlideIndex() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/slide_index`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -61,7 +63,7 @@ async function proPresenterActivePresentationSlideIndex() {
 }
 
 async function proPresenterActivePresentationTotalIndex() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}`);
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/${currentSlideUUID}`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -75,7 +77,7 @@ async function proPresenterActivePresentationTotalIndex() {
 }
 
 async function proPresenterActivePresentation() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active`);
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/active`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -85,7 +87,7 @@ async function proPresenterActivePresentation() {
 }
 
 async function proPresenterActivePresentationSlide() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/slide_index`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/slide_index`)
   if (!response.ok) {
 		throw new Error(`Error!`)
 	}
@@ -93,13 +95,13 @@ async function proPresenterActivePresentationSlide() {
   if(indexSum === 0 || indexSum == currentSlideNum){
     document.querySelector('#nextSlideImage').src = `images/gfx1blank.png`
   }else{
-    document.querySelector('#nextSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
-    document.querySelector('#currentSlideImage').src = `http://192.168.0.125:1025/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum - 1}`
+    document.querySelector('#nextSlideImage').src = `http://${gfx1IpAddress}/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum}`
+    document.querySelector('#currentSlideImage').src = `http://${gfx1IpAddress}/v1/presentation/${currentSlideUUID}/thumbnail/${currentSlideNum - 1}`
   }
 }
 
 async function proPresenterActiveTimeline() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/presentation/active/timeline`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/presentation/active/timeline`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -108,7 +110,7 @@ async function proPresenterActiveTimeline() {
 }
 
 async function proPresenterActivePresentationLook() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/look/current`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/look/current`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -117,7 +119,7 @@ async function proPresenterActivePresentationLook() {
 }
 
 async function proPresenterActivePresentationStage() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/stage/screen/0/layout`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/stage/screen/0/layout`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -126,7 +128,7 @@ async function proPresenterActivePresentationStage() {
 }
 
 async function proPresenterCurrentTimer() {
-	const response = await fetch(`http://192.168.0.125:1025/v1/timers/current`)
+	const response = await fetch(`http://${gfx1IpAddress}/v1/timers/current`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -153,7 +155,7 @@ async function gfx2Data(){
 }
 
 async function proPresenterActivePresentationUUID2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/active`);
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/active`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -162,7 +164,7 @@ async function proPresenterActivePresentationUUID2() {
 }
 
 async function proPresenterActivePresentationSlideIndex2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/slide_index`)
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/slide_index`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -176,7 +178,7 @@ async function proPresenterActivePresentationSlideIndex2() {
 }
 
 async function proPresenterActivePresentationTotalIndex2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/${currentSlideUUID}`);
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/${currentSlideUUID}`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -190,7 +192,7 @@ async function proPresenterActivePresentationTotalIndex2() {
 }
 
 async function proPresenterActivePresentation2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/active`);
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/active`);
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -200,7 +202,7 @@ async function proPresenterActivePresentation2() {
 }
 
 async function proPresenterActivePresentationSlide2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/slide_index`)
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/slide_index`)
   if (!response.ok) {
 		throw new Error(`Error!`)
 	}
@@ -208,13 +210,13 @@ async function proPresenterActivePresentationSlide2() {
   if(indexSum2 === 0 || indexSum2 == currentSlideNum2){
     document.querySelector('#nextSlideImage2').src = `images/gfx2blank.png`
   }else{
-    document.querySelector('#nextSlideImage2').src = `http://192.168.0.124:1030/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2}`
-    document.querySelector('#currentSlideImage2').src = `http://192.168.0.124:1030/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2 - 1}`
+    document.querySelector('#nextSlideImage2').src = `http://${gfx2IpAddress}/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2}`
+    document.querySelector('#currentSlideImage2').src = `http://${gfx2IpAddress}/v1/presentation/${currentSlideUUID2}/thumbnail/${currentSlideNum2 - 1}`
   }
 }
 
 async function proPresenterActiveTimeline2() {
-	const response = await fetch(`http://192.168.0.124:1030/v1/presentation/active/timeline`)
+	const response = await fetch(`http://${gfx2IpAddress}/v1/presentation/active/timeline`)
   if (!response.ok) {
 		throw new Error(`Error!`);
 	}
@@ -341,7 +343,7 @@ async function pcoPlanUpdate() {
 
 //Companion HTTP Commands //
 
-let companionAddress = '192.168.0.193:8000'
+let companionAddress = ''
 
 function compButton1(){
   fetch(`http://${companionAddress}/press/bank/1/26`)
