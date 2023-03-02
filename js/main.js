@@ -5,7 +5,7 @@ document.querySelector('#settingSave').addEventListener('click', saveSettings)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
-console.log(localStorage.getItem('gfx1IpAddress'))
+
 function saveSettings(){
   gfx1IpAddress = document.getElementById('gfx1Ip').value
   gfx2IpAddress = document.getElementById('gfx2Ip').value
