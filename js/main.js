@@ -2,7 +2,14 @@ document.addEventListener('DOMContentLoaded', gfx1Data)
 document.addEventListener('DOMContentLoaded', gfx2Data)
 document.addEventListener('DOMContentLoaded', nextWeekend)
 document.querySelector('#settingSave').addEventListener('click', saveSettings)
+document.querySelector('#theme1').addEventListener('click', theme1)
+document.querySelector('#theme2').addEventListener('click', theme2)
+document.querySelector('#theme3').addEventListener('click', theme3)
+document.querySelector('#theme4').addEventListener('click', theme4)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
+
+document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
+
 
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
 
@@ -14,6 +21,23 @@ function saveSettings(){
   localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
   localStorage.setItem('companionIpAddress',companionIpAddress)
 }
+
+function theme1(){
+  localStorage.setItem('theme', 'retro')
+}
+
+function theme2(){
+  localStorage.setItem('theme', 'cyberpunk')
+}
+
+function theme3(){
+  localStorage.setItem('theme', 'bumblebee')
+}
+
+function theme4(){
+  localStorage.setItem('theme', 'coffee')
+}
+
 
 ////// PROPRESENTER GFX1 ////////
 
