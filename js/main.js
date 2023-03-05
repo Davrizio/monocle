@@ -20,6 +20,7 @@ function saveSettings(){
   localStorage.setItem('gfx1IpAddress',gfx1IpAddress)
   localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
   localStorage.setItem('companionIpAddress',companionIpAddress)
+  location.reload()
 }
 
 function theme1(){
