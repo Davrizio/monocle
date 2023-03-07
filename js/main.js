@@ -17,26 +17,34 @@ function saveSettings(){
   gfx1IpAddress = document.getElementById('gfx1Ip').value
   gfx2IpAddress = document.getElementById('gfx2Ip').value
   companionIpAddress = document.getElementById('companionIp').value
-  localStorage.setItem('gfx1IpAddress',gfx1IpAddress)
-  localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
-  localStorage.setItem('companionIpAddress',companionIpAddress)
-  location.reload()
+  if(gfx1IpAddress != '' || gfx2IpAddress != '' || companionIpAddress != ''){
+    localStorage.setItem('gfx1IpAddress',gfx1IpAddress)
+    localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
+    localStorage.setItem('companionIpAddress',companionIpAddress)
+    location.reload()
+  }else{
+    document.querySelector('#saveEmpty').innerText = `Hey you didn't enter anything!`
+  }
 }
 
 function theme1(){
   localStorage.setItem('theme', 'retro')
+  document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 }
 
 function theme2(){
   localStorage.setItem('theme', 'cyberpunk')
+  document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 }
 
 function theme3(){
   localStorage.setItem('theme', 'bumblebee')
+  document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 }
 
 function theme4(){
   localStorage.setItem('theme', 'coffee')
+  document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 }
 
 
