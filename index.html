@@ -16,10 +16,12 @@
   		<label class="modal-box relative" for="">
     		<h3 class="text-lg font-bold">Settings</h3>
     		<p class="py-4">Choose your theme below</p>
-			<button id="theme1" class="btn btn-primary hover:bg-primary my-2">retro</button>
-			<button id="theme2" class="btn btn-primary hover:bg-primary my-2">cyberpunk</button>
-			<button id="theme3" class="btn btn-primary hover:bg-primary my-2">bumblebee</button>
-			<button id="theme4" class="btn btn-primary hover:bg-primary my-2">coffee</button>
+			<div class="btn-group" >
+				<button id="theme1" class="btn btn-primary hover:bg-secondary">retro</button>
+				<button id="theme2" class="btn btn-primary hover:bg-secondary">cyberpunk</button>
+				<button id="theme3" class="btn btn-primary hover:bg-secondary">bumblebee</button>
+				<button id="theme4" class="btn btn-primary hover:bg-secondary">coffee</button>
+			</div>
 			<p class="py-4">GFX 1</p>
 			<div class="form-control">
 				<label class="label">
@@ -41,7 +43,8 @@
 				</label>
 				<input type="text" placeholder="ex. 192.168.0.100:8000" class="input input-bordered" id="companionIp" name="ipaddress"/>
 			</div>
-			<button id="settingSave" class="btn btn-primary hover:bg-primary my-2">SAVE</button>
+			<button id="settingSave" class="btn btn-primary hover:bg-secondary my-2">SAVE</button>
+			<button id="pcoUpdate" class="btn btn-primary hover:bg-secondary my-2">Update PCO</button>
 			<div id="saveEmpty"></div>
   		</label>
 	</label>
@@ -69,14 +72,14 @@
 				<figure><iframe class="w-full aspect-video" src="https://boxcast.tv/view-embed/iler1q78dvw9duopldot?showTitle=0&showDescription=0&showHighlights=0&showRelated=0&defaultVideo=next&market=house-of-worship&showDocuments=0&showIndex=0&showDonations=0" frameBorder="0" scrolling="auto" allowfullscreen="true" allow="autoplay; fullscreen"></iframe></figure>
 				<div class="card-body">
 				<div class="card-actions w-full h-full place-content-end">
-					<button class="btn btn-primary">Boxcast Dashboard</button>
+					<button class="btn btn-primary hover:bg-secondary">Boxcast Dashboard</button>
 				</div>
 				</div>
 			</div>
 
 			<div class="card row-span-1 col-span-1 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
-					<div id="gfx2" class="badge badge-primary badge-outline row-span-1 col-span-12">
+					<div id="gfx2" class="badge badge-outline row-span-1 col-span-12">
 						<h2 class="card-title">GFX 2</h2>
 					</div>
 					<div class="row-span-1 col-span-12">
@@ -103,7 +106,7 @@
 
 			<div class="card row-span-1 col-span-2 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-14 grid-cols-12 place-items-center card-body">
-					<div class="badge badge-primary badge-outline row-span-1 col-span-12">
+					<div class="badge badge-outline row-span-1 col-span-12">
 						<h2 class="card-title">GFX 1</h2>
 					</div>
 					<div class="row-span-1 col-span-6">
@@ -140,7 +143,7 @@
 
 			<div class="card flex row-span-2 col-span-3 shadow-xl bg-base-300 text-base-content">
 				<div class="grid grid-rows-8 grid-cols-8 place-items-center card-body">
-					<h2 class="card-title badge badge-primary badge-outline row-span-1 col-span-8">COMPANION</h2>
+					<h2 class="card-title badge badge-outline row-span-1 col-span-8">COMPANION</h2>
 					<div class="row-span-1 col-span-8">
 						<button id="compBtn1" class="btn btn-wide m-2">BARCO Tag</button>
 						<button id="compBtn2" class="btn btn-wide m-2">BARCO Iso</button>

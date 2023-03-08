@@ -6,6 +6,7 @@ document.querySelector('#theme1').addEventListener('click', theme1)
 document.querySelector('#theme2').addEventListener('click', theme2)
 document.querySelector('#theme3').addEventListener('click', theme3)
 document.querySelector('#theme4').addEventListener('click', theme4)
+document.querySelector('#pcoUpdate').addEventListener('click', pcoPlanUpdate)
 document.querySelector('#compBtn1').addEventListener('click', compButton1)
 
 document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
@@ -13,10 +14,13 @@ document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 
 //npx tailwindcss -i ./css/style.css -o ./dist/output.css --watch
 
+/////SETTINGS MODAL/////
+
 function saveSettings(){
   gfx1IpAddress = document.getElementById('gfx1Ip').value
   gfx2IpAddress = document.getElementById('gfx2Ip').value
   companionIpAddress = document.getElementById('companionIp').value
+  //Check if nothing was entered and save was clicked
   if(gfx1IpAddress != '' || gfx2IpAddress != '' || companionIpAddress != ''){
     localStorage.setItem('gfx1IpAddress',gfx1IpAddress)
     localStorage.setItem('gfx2IpAddress',gfx2IpAddress)
@@ -47,15 +51,7 @@ function theme4(){
   document.body.setAttribute('data-theme', `${localStorage.getItem('theme')}`)
 }
 
-
-////// PROPRESENTER GFX1 ////////
-
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
-let gfx1IpAddress = ''
-let currentSlideUUID = ''
-let currentSlideNum = ''
-let indexSum = 0
-
+//ProPresenter returns time in seconds, convert to MM:SS
 function timeConvert(sec){
   let minutes = Math.floor(sec / 60)
   let seconds = sec - minutes * 60
@@ -63,6 +59,14 @@ function timeConvert(sec){
   return `${minutes}:${secondsPad}`
 }
 
+////// PROPRESENTER GFX1 ////////
+
+let gfx1IpAddress = ''
+let currentSlideUUID = ''
+let currentSlideNum = ''
+let indexSum = 0
+
+//Gathers all data based on UUID and Slide index given
 async function gfx1Data(){
   const uuid = await proPresenterActivePresentationUUID()
   const slideIndex = await proPresenterActivePresentationSlideIndex()
@@ -171,12 +175,12 @@ async function proPresenterCurrentTimer() {
 
 ////// PROPRESENTER GFX2 ////////
 
-//ADD a check to see if propresenter is connectable if not show error in dom 'are you on the same network as ProPresenter?'
 let gfx2IpAddress = ''
 let currentSlideUUID2 = ''
 let currentSlideNum2 = ''
 let indexSum2 = 0
 
+//Gathers all data based on UUID and Slide index given
 async function gfx2Data(){
   const uuid = await proPresenterActivePresentationUUID2()
   const slideIndex = await proPresenterActivePresentationSlideIndex2()
@@ -268,6 +272,7 @@ let closestDate = new Date(now)
 
 let closestDateId = ''
 
+//Checks localstorage for next weekend day and returns next plan
 function nextWeekend(){
   if(now.getDay() === 0){
     closestDate.setDate(closestDate.getDate() - 1)
@@ -314,8 +319,8 @@ async function pcoPlanItems() {
     let th = document.createElement("th")
     let td = document.createElement("td")
 
+    //Planningcenter Headers don't have time objects, this keeps the DOM from displaying 0
     let time = timeConvert(data.data[title].attributes.length)
-
     if(time == '0:00'){
       th.textContent = ''
     }else{
@@ -325,7 +330,7 @@ async function pcoPlanItems() {
     td.textContent = data.data[title].attributes.title;
     tr.className = "bg-accent"
     th.className = "px-6 py-4 font-medium text-base-content whitespace-nowrap bg-base-200"
-    td.className = "px-6 py-4 text-base-content bg-base-300" // add if statement and color based on  item type data.data[title].attributes.item_type        
+    td.className = "px-6 py-4 text-base-content bg-base-300"        
     tr.appendChild(th);
     tr.appendChild(td)
     itemList.appendChild(tr)
@@ -353,7 +358,7 @@ async function pcoPlan() {
 }
 
 
-// build on click refresh button
+// Store next 52 plans in localstorage
 async function pcoPlanUpdate() {
 	const response = await fetch(
 		'https://api.planningcenteronline.com/services/v2/service_types/285487/plans?order=-sort_date&per_page=52',
@@ -378,6 +383,7 @@ async function pcoPlanUpdate() {
 
 let companionAddress = ''
 
+//Click sends command and changes color based on status
 function compButton1(){
   fetch(`http://${localStorage.getItem('companionAddress')}/press/bank/1/26`)
   .then(data => {
