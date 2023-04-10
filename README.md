@@ -1,10 +1,6 @@
 
 <h1 align="center">
-  <br>
-  <a href="#"><img src="https://github.com/Davrizio/hustle/blob/main/public/imgs/logo.jpg" alt="monocle" width="200"></a>
-  <br>
   Monocle
-  <br>
 </h1>
 
 <h4 align="center">A Dashboard to monitor and control services used for Live Video Production!</h4>
@@ -18,7 +14,7 @@
   <a href="#license">License</a>
 </p>
 
-![screenshot](https://github.com/Davrizio/hustle/blob/main/public/imgs/hustlev1.gif)
+![screenshot](https://github.com/Davrizio/monocle/blob/main/images/thumb1.png)
 
 ## Key Features
 
@@ -56,4 +52,8 @@ MIT
 
 > GitHub [@davrizio](https://github.com/davrizio) &nbsp;&middot;&nbsp;
 > Twitter [@davrizio](https://twitter.com/davrizio)
+
+![screenshot](https://github.com/Davrizio/monocle/blob/main/images/thumb2.png)
+
+![screenshot](https://github.com/Davrizio/monocle/blob/main/images/thumb3.png)
 
